@@ -1,0 +1,9 @@
+C++ fast programming language hai.
+
+Use:
+- Games
+- Operating systems
+- High performance software
+
+Example:
+cout << "Hello";

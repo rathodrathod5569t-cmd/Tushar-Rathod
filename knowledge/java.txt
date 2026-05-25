@@ -1,0 +1,9 @@
+Java ek object oriented language hai.
+
+Java ka use:
+- Android apps
+- Enterprise software
+- Backend systems
+
+Example:
+System.out.println("Hello");

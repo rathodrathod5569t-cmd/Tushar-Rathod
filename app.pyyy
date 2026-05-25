@@ -1,0 +1,33 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+def brain(message):
+
+    msg = message.lower()
+
+    if "hello" in msg:
+        return "Hello bhai 👋"
+
+    elif "kaise ho" in msg:
+        return "Main badhiya hoon 😎"
+
+    elif "naam" in msg:
+        return "Main Tushar ka AI hoon 🚀"
+
+    else:
+        return "Samajh nahi aaya 😅"
+
+@app.route("/ai", methods=["POST"])
+def ai():
+
+    data = request.json
+    message = data.get("message")
+
+    reply = brain(message)
+
+    return jsonify({
+        "reply": reply
+    })
+
+app.run(host="0.0.0.0", port=5000)

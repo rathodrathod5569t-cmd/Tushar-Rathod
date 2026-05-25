@@ -1,0 +1,16 @@
+{
+  "skills": {
+    "hello_world_python": {
+      "code": "print(\"Hello World\")",
+      "learned_at": "2026-05-25 10:32:41.895679",
+      "uses": 0
+    },
+    "python_loop": {
+      "code": "for i in range(5):",
+      "learned_at": "2026-05-25 10:33:14.633416",
+      "uses": 0
+    }
+  },
+  "conversations": [],
+  "code_library": {}
+}

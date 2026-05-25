@@ -1,0 +1,11 @@
+Python ek powerful programming language hai.
+
+Python ka use:
+- AI
+- Web development
+- Automation
+- Apps
+- Games
+
+Print example:
+print("Hello")
