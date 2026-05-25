@@ -1,22 +1,68 @@
-// server.js - Backend for 24/7 AI Remote
-
-const express = require('express');
-const cors = require('cors');
-const fetch = require('node-fetch');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-app.get('/', (req, res) => {
-    res.send('🚀 Bhai Ka AI Server Running!');
+// ROOT
+
+app.get("/", (req,res)=>{
+res.send("BHAI AI API RUNNING 🚀");
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+
+// CHAT API
+
+app.post("/chat",(req,res)=>{
+
+let msg = req.body.message.toLowerCase();
+
+let reply = "Samajh gaya bhai 😎";
+
+
+if(msg.includes("hello") || msg.includes("hi")){
+reply = "Hello Bhai 👋";
+}
+
+else if(msg.includes("python")){
+reply = "Python ek powerful language hai 🔥";
+}
+
+else if(msg.includes("html")){
+reply = "HTML website banata hai 🌐";
+}
+
+else if(msg.includes("css")){
+reply = "CSS design karta hai 🎨";
+}
+
+else if(msg.includes("javascript")){
+reply = "JavaScript smart banata hai ⚡";
+}
+
+else if(msg.includes("api")){
+reply = "API systems connect karti hai 🔗";
+}
+
+else if(msg.includes("ai")){
+reply = "AI future hai 🚀";
+}
+
+else{
+reply = "Mujhe aur sikhaya ja raha hai 😎";
+}
+
+
+res.json({
+reply: reply
+});
+
+});
+
+
+app.listen(3000,()=>{
+console.log("BHAI AI SERVER RUNNING 🚀");
 });
