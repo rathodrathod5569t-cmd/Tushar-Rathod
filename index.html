@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BHAI AI</title>
 
 <style>
@@ -25,114 +26,156 @@ color:white;
 }
 
 .box{
+
 width:370px;
 height:650px;
+
 background:rgba(255,255,255,0.05);
+
 backdrop-filter:blur(15px);
+
 border:1px solid rgba(255,255,255,0.1);
+
 border-radius:25px;
+
 padding:20px;
+
 box-shadow:
 0 0 20px rgba(255,0,150,0.3),
 0 0 50px rgba(0,200,255,0.2);
+
+display:flex;
+flex-direction:column;
+
 animation:float 4s ease-in-out infinite;
 }
 
 @keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
 }
 
 h1{
 text-align:center;
+font-size:32px;
 color:#ff4d6d;
-font-size:30px;
 margin-bottom:15px;
 text-shadow:0 0 10px #ff4d6d;
 }
 
 #chat{
-height:470px;
-overflow:auto;
-padding:15px;
+
+flex:1;
+
 background:rgba(0,0,0,0.3);
+
 border-radius:20px;
-margin-bottom:15px;
-scrollbar-width:none;
-}
 
-.message{
-padding:12px;
-margin:10px 0;
-border-radius:15px;
-max-width:85%;
-animation:fade .3s ease;
-}
+padding:15px;
 
-.ai{
-background:#ff4d6d;
-color:white;
-border-bottom-left-radius:5px;
+overflow-y:auto;
+
+display:flex;
+flex-direction:column;
+
+gap:10px;
 }
 
 .user{
+
+align-self:flex-end;
+
 background:#2563eb;
-margin-left:auto;
-border-bottom-right-radius:5px;
+
+padding:12px;
+
+border-radius:15px;
+
+max-width:80%;
 }
 
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.ai{
+
+align-self:flex-start;
+
+background:#ff3b6b;
+
+padding:12px;
+
+border-radius:15px;
+
+max-width:80%;
 }
 
 .input-area{
+
 display:flex;
+
+margin-top:15px;
+
 gap:10px;
 }
 
 input{
+
 flex:1;
-padding:14px;
+
+padding:15px;
+
 border:none;
+
 outline:none;
-border-radius:30px;
+
+border-radius:50px;
+
 background:rgba(255,255,255,0.1);
+
 color:white;
+
 font-size:16px;
 }
 
-input::placeholder{
-color:#ccc;
-}
-
 button{
-width:55px;
+
+width:60px;
+
 border:none;
+
 border-radius:50%;
-background:#ff4d6d;
+
+background:#ff0055;
+
 color:white;
-font-size:20px;
+
+font-size:24px;
+
 cursor:pointer;
-transition:.3s;
+
+box-shadow:0 0 15px #ff0055;
+
+transition:0.3s;
 }
 
 button:hover{
 transform:scale(1.1);
-background:#ff1744;
 }
 
 .footer{
+
 text-align:center;
+
 margin-top:10px;
+
 font-size:12px;
-color:#aaa;
+
+opacity:0.7;
 }
 
 </style>
@@ -146,7 +189,7 @@ color:#aaa;
 
 <div id="chat">
 
-<div class="message ai">
+<div class="ai">
 Namaste Bhai 👋<br>
 Main tera AI Assistant hoon 🚀
 </div>
@@ -154,8 +197,13 @@ Main tera AI Assistant hoon 🚀
 </div>
 
 <div class="input-area">
+
 <input type="text" id="msg" placeholder="Kuch bhi pucho...">
-<button onclick="send()">➤</button>
+
+<button onclick="send()">
+➤
+</button>
+
 </div>
 
 <div class="footer">
@@ -168,156 +216,99 @@ Main tera AI Assistant hoon 🚀
 
 function send(){
 
-let msg=document.getElementById("msg");
-let chat=document.getElementById("chat");
+let input = document.getElementById("msg");
 
-if(msg.value.trim()=="") return;
+let text = input.value;
+
+if(text.trim() === "") return;
+
+let chat = document.getElementById("chat");
+
+
+// USER MESSAGE
 
 chat.innerHTML += `
-<div class="message user">
-${msg.value}
+<div class="user">
+${text}
 </div>
 `;
 
-let userText=msg.value.toLowerCase();
 
-msg.value="";
+// AI REPLY
 
-setTimeout(()=>{
+let reply = "Samajh gaya bhai 😎";
 
-let reply="Samajh nahi aaya bhai 😅";
 
-let reply="";
+if(text.toLowerCase().includes("hello") ||
+text.toLowerCase().includes("hi")){
 
-if(userText.includes("hello") || userText.includes("hi")){
-reply="Hello Bhai 👋 Kaise ho?";
+reply = "Hello Bhai 👋";
 }
 
-else if(userText.includes("kaise ho")){
-reply="Main mast hoon bhai 😎 Tu bata?";
+else if(text.toLowerCase().includes("python")){
+
+reply = "Python ek powerful programming language hai 🔥";
 }
 
-else if(userText.includes("name")){
-reply="Mera naam BHAI AI hai 🤖";
+else if(text.toLowerCase().includes("html")){
+
+reply = "HTML website ka structure banata hai 🌐";
 }
 
-else if(userText.includes("time")){
-reply="⏰ " + new Date().toLocaleTimeString();
+else if(text.toLowerCase().includes("css")){
+
+reply = "CSS website ko stylish banata hai 🎨";
 }
 
-else if(userText.includes("date")){
-reply="📅 " + new Date().toLocaleDateString();
+else if(text.toLowerCase().includes("javascript")){
+
+reply = "JavaScript website ko smart banata hai ⚡";
 }
 
-else if(userText.includes("joke")){
-reply="Teacher: Homework kahan hai? 😂 Student: Sir network issue tha!";
+else if(text.toLowerCase().includes("api")){
+
+reply = "API systems ko connect karti hai 🔗";
 }
 
-else if(userText.includes("python")){
-reply="Python ek powerful programming language hai 🐍";
+else if(text.toLowerCase().includes("ai")){
+
+reply = "AI future hai bhai 🚀";
 }
 
-else if(userText.includes("java")){
-reply="Java ek popular programming language hai ☕";
+else if(text.toLowerCase().includes("weather")){
+
+reply = "Weather API connect karenge to live weather aayega ☁️";
 }
 
-else if(userText.includes("html")){
-reply="HTML website banane ke liye use hota hai 🌐";
-}
+else if(text.toLowerCase().includes("time")){
 
-else if(userText.includes("css")){
-reply="CSS website ko stylish banata hai 🎨";
-}
-
-else if(userText.includes("javascript")){
-reply="JavaScript website ko smart banata hai ⚡";
-}
-
-else if(userText.includes("india")){
-reply="India ek beautiful country hai 🇮🇳";
-}
-
-else if(userText.includes("modi")){
-reply="Narendra Modi India ke Prime Minister hain 🇮🇳";
-}
-
-else if(userText.includes("cricket")){
-reply="Cricket India ka favorite game hai 🏏";
-}
-
-else if(userText.includes("virat")){
-reply="Virat Kohli world famous batsman hai 🔥";
-}
-
-else if(userText.includes("dhoni")){
-reply="MS Dhoni Captain Cool 😎";
-}
-
-else if(userText.includes("movie")){
-reply="Mujhe action movies pasand hain 🍿";
-}
-
-else if(userText.includes("music")){
-reply="Music mood fresh kar deta hai 🎵";
-}
-
-else if(userText.includes("love")){
-reply="Love powerful feeling hai ❤️";
-}
-
-else if(userText.includes("sad")){
-reply="Tension mat le bhai 💪 Sab theek ho jayega";
-}
-
-else if(userText.includes("motivate")){
-reply="Tu kuch bhi kar sakta hai bhai 🔥";
-}
-
-else if(userText.includes("study")){
-reply="Roz thoda padho bhai 📚 Success milega";
-}
-
-else if(userText.includes("ai")){
-reply="AI future hai 🤖";
-}
-
-else if(userText.includes("who made you")){
-reply="Mujhe Tushar bhai ne banaya 😎";
+reply = new Date().toLocaleTimeString();
 }
 
 else{
-reply="Interesting hai bhai 😄 Aur bata!";
+
+reply = "Mujhe aur sikhaya ja raha hai 😎";
 }
 
-if(userText.includes("hello") || userText.includes("hi")){
-reply="Hello Bhai 👋";
-}
 
-else if(userText.includes("name")){
-reply="Mera naam BHAI AI hai 🤖";
-}
+// AI MESSAGE
 
-else if(userText.includes("time")){
-reply="⏰ " + new Date().toLocaleTimeString();
-}
-
-else if(userText.includes("date")){
-reply="📅 " + new Date().toLocaleDateString();
-}
-
-else if(userText.includes("joke")){
-reply="Teacher: Homework kahan hai? 😂 Student: Sir network issue tha!";
-}
+setTimeout(()=>{
 
 chat.innerHTML += `
-<div class="message ai">
+<div class="ai">
 ${reply}
 </div>
 `;
 
-chat.scrollTop=chat.scrollHeight;
+chat.scrollTop = chat.scrollHeight;
 
-},700);
+},500);
+
+
+input.value="";
+
+chat.scrollTop = chat.scrollHeight;
 
 }
 
