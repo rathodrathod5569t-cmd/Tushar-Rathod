@@ -867,7 +867,6 @@
                     <div class="stat-change">↑ 2% this week</div>
                 </div>
             </div>
-
             <!-- Hero with Orb -->
             <div class="hero-section">
                 <div class="orb-container">
@@ -981,92 +980,48 @@
         </main>
     </div>
 
-    <script>
-        // Generate particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
+    ...
+<script>
 
-        // Active nav state
-        function setActive(element) {
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            element.classList.add('active');
-        }
+const replies = {
+hello: "Hello Bhai 👋 Kaise ho?",
+hi: "Hi Bhai 😎",
+kaiseho: "Main mast hoon bhai 🔥",
+name: "Mera naam BHAI AI hai 🤖",
+python: "Python ek powerful coding language hai 🐍",
+html: "HTML website ka structure banata hai 🌐",
+css: "CSS website ko stylish banata hai 🎨",
+javascript: "JavaScript website ko intelligent banata hai ⚡",
+bye: "Bye Bhai 👋 Fir milte hain"
+};
 
-        // Generate button animation
-        function generate() {
-            const input = document.getElementById('commandInput');
-            const typing = document.getElementById('typingIndicator');
-            
-            if (input.value.trim()) {
-                typing.classList.add('active');
-                input.disabled = true;
-                
-                setTimeout(() => {
-                    typing.classList.remove('active');
-                    input.disabled = false;
-                    input.value = '';
-                    input.placeholder = 'Command executed successfully! ✨';
-                    setTimeout(() => {
-                        input.placeholder = 'Command Aureus AI...';
-                    }, 2000);
-                }, 2000);
-            } else {
-                input.style.borderColor = '#FF4757';
-                setTimeout(() => {
-                    input.style.borderColor = '';
-                }, 500);
-            }
-        }
+function generate() {
 
-        // Input enter key
-        document.getElementById('commandInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') generate();
-        });
+const input = document.getElementById("commandInput");
 
-        // Animate stats on load
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-value');
-            stats.forEach(stat => {
-                const finalValue = stat.textContent;
-                const isPercentage = finalValue.includes('%');
-                const numericValue = parseFloat(finalValue);
-                let current = 0;
-                const increment = numericValue / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= numericValue) {
-                        stat.textContent = finalValue;
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = Math.floor(current) + (isPercentage ? '%' : (numericValue > 100 ? '' : ''));
-                        if (numericValue > 100 && !isPercentage) stat.textContent = Math.floor(current) + (current >= 1000 ? 'K' : '');
-                    }
-                }, 30);
-            });
-        }
-        
-        setTimeout(animateStats, 500);
+let text = input.value.toLowerCase().replace(/\s/g,'');
 
-        // Hover effects for cards
-        document.querySelectorAll('.creation-item, .project-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(8px)';
-            });
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
-        });
-    </script>
-</body>
-</html>
+if(text === "") return;
 
+let answer = "Samajh nahi aaya bhai 😅";
+
+for(let key in replies){
+if(text.includes(key)){
+answer = replies[key];
+}
+}
+
+alert(answer);
+
+input.value = "";
+
+}
+
+document.getElementById("commandInput")
+.addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+generate();
+}
+});
+
+</script>
