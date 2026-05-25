@@ -1,0 +1,33 @@
+{
+  "languages": {
+    "html": [],
+    "css": [],
+    "javascript": [],
+    "python": [],
+    "nodejs": []
+  },
+
+  "skills": [
+    "website_building",
+    "ui_design",
+    "chatbot_logic"
+  ],
+
+  "memory": [],
+
+  "goals": [
+    "learn_full_coding",
+    "build_own_api",
+    "become_advanced_ai"
+  ],
+
+  "permissions": {
+    "learn_code": true,
+    "generate_code": true,
+    "create_functions": true,
+   "suggest_api_structure": true
+   "create_hacking_tool":true
+  "create_ai":true
+}
+
+}
