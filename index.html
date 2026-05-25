@@ -144,7 +144,11 @@ Main tera AI Assistant hoon 😎
 
 <script>
 
-function sendMessage(){
+<script>
+
+const API_KEY = "AIzaSyAgggyoJixUHaVudPEy-XB6cGZJ2xO0Dkk";
+
+async function sendMessage(){
 
 let input = document.getElementById("msg");
 
@@ -158,49 +162,51 @@ chat.innerHTML += `
 <div class="message user">${text}</div>
 `;
 
-let reply = "Samajh nahi aaya bhai 😅";
+chat.scrollTop = chat.scrollHeight;
 
-let t = text.toLowerCase();
+input.value = "";
 
-if(t.includes("hello") || t.includes("hi")){
-reply = "Hello Bhai 👋 Kaise ho?";
+let response = await fetch(
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+contents:[
+{
+parts:[
+{
+text:text
 }
-
-else if(t.includes("kaise ho")){
-reply = "Main mast hoon bhai 😎";
+]
 }
-
-else if(t.includes("python")){
-reply = "Python ek powerful coding language hai 🐍";
+]
+})
 }
+);
 
-else if(t.includes("html")){
-reply = "HTML website banane ke kaam aata hai 🌐";
+let data = await response.json();
+
+let reply = "Reply nahi mila 😅";
+
+try{
+
+reply =
+data.candidates[0].content.parts[0].text;
+
+}catch{
+
+reply = "Error aaya bhai 😅";
+
 }
-
-else if(t.includes("css")){
-reply = "CSS website ko stylish banata hai 🎨";
-}
-
-else if(t.includes("javascript")){
-reply = "JavaScript website ko smart banata hai ⚡";
-}
-
-else if(t.includes("bye")){
-reply = "Bye Bhai 👋";
-}
-
-setTimeout(()=>{
 
 chat.innerHTML += `
 <div class="message ai">${reply}</div>
 `;
 
 chat.scrollTop = chat.scrollHeight;
-
-},500);
-
-input.value="";
 
 }
 
@@ -214,6 +220,3 @@ sendMessage();
 });
 
 </script>
-
-</body>
-</html>
