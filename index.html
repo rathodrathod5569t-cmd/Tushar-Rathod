@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BHAI AI</title>
 
 <style>
@@ -10,58 +11,74 @@
 body{
 margin:0;
 padding:0;
-background:#050816;
-font-family:Arial;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-color:white;
+background:#020617;
+font-family:Arial;
+overflow:hidden;
+}
+
+.bg{
+position:absolute;
+width:350px;
+height:350px;
+background:gold;
+filter:blur(120px);
+opacity:0.3;
+transform:rotate(35deg);
 }
 
 .container{
+position:relative;
 width:350px;
 height:600px;
 background:#111827;
-border-radius:20px;
+border-radius:25px;
 padding:15px;
-box-shadow:0 0 30px gold;
 display:flex;
 flex-direction:column;
+box-shadow:0 0 40px gold;
+z-index:2;
 }
 
 h1{
 text-align:center;
 color:gold;
+margin:10px 0;
 }
 
 #chat{
 flex:1;
-overflow-y:auto;
-background:#0b1020;
+background:#020617;
+border-radius:20px;
 padding:10px;
-border-radius:15px;
-margin-bottom:10px;
+overflow-y:auto;
 }
 
 .message{
 padding:10px;
 margin:10px 0;
-border-radius:12px;
+border-radius:15px;
 max-width:80%;
+word-wrap:break-word;
 }
 
 .user{
 background:#2563eb;
 margin-left:auto;
+color:white;
 }
 
 .ai{
 background:#ff2d75;
+color:white;
 }
 
 .input-area{
 display:flex;
+margin-top:10px;
 gap:10px;
 }
 
@@ -89,6 +106,8 @@ cursor:pointer;
 
 <body>
 
+<div class="bg"></div>
+
 <div class="container">
 
 <h1>🤖 BHAI AI</h1>
@@ -96,14 +115,19 @@ cursor:pointer;
 <div id="chat">
 
 <div class="message ai">
-Namaste Bhai 👋
+Namaste Bhai 👋<br>
+Main tera AI Assistant hoon 😎
 </div>
 
 </div>
 
 <div class="input-area">
 
-<input type="text" id="msg" placeholder="Kuch bhi pucho...">
+<input
+type="text"
+id="msg"
+placeholder="Kuch bhi pucho..."
+>
 
 <button onclick="sendMessage()">➤</button>
 
